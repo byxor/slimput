@@ -1,44 +1,40 @@
 package io.github.byxor.slimput.scanners;
 
+import io.github.byxor.slimput.SlimputException;
 import org.testng.annotations.Test;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import static org.testng.Assert.assertEquals;
 
 
 public class IntegerScannerTest {
 
+    private BufferedReader bufferedReader;
     private IntegerScanner integerScanner;
     private int result;
 
-    @Test(expectedExceptions = IOException.class)
-    public void shouldThrowIOExceptionWhenReadingEmptyLineAsInt() throws IOException {
+    @Test(expectedExceptions = SlimputException.class)
+    public void shouldThrowSlimputExceptionWhenReadingEmptyLineAsInt() throws Exception {
         givenAnIntegerScanner();
+        givenReadLineReturns("");
         whenReadingNextLineAsInt();
     }
 
-//    @Test
-//    public void shouldReadZeroFromLineContainingZero() throws IOException {
-//        givenAnIntegerScanner();
-//        whenStreamIsFed('0');
-//        whenStreamIsFedEOF();
-//        whenReadingNextLineAsInt();
-//        thenResultIs(0);
-//    }
-
     private void givenAnIntegerScanner() {
-        writeableInputStream = new WriteableInputStream();
-        integerScanner = new IntegerScanner(writeableInputStream);
+        bufferedReader = mock(BufferedReader.class);
+        integerScanner = new IntegerScanner(bufferedReader);
     }
 
-    private void whenReadingNextLineAsInt() throws IOException {
+    private void givenReadLineReturns(String line) throws Exception {
+        when(bufferedReader.readLine()).thenReturn(line);
+    }
+
+    private void whenReadingNextLineAsInt() throws Exception {
         result = integerScanner.readNextLineAsInt();
-    }
-
-    private void whenStreamIsFed(char data) {
-        writeableInputStream.write((int) data);
-    }
-
-    private void whenStreamIsFedEOF() {
-        writeableInputStream.write(-1);
     }
 
     private void thenResultIs(int expected) {

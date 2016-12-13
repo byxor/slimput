@@ -1,23 +1,26 @@
 package io.github.byxor.slimput.scanners;
 
+import io.github.byxor.slimput.SlimputException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 
 public class IntegerScanner {
 
     private final BufferedReader bufferedReader;
 
-    public IntegerScanner(InputStream inputStream) {
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        this.bufferedReader = new BufferedReader(inputStreamReader);
+    public IntegerScanner(BufferedReader bufferedReader) {
+        this.bufferedReader = bufferedReader;
     }
 
-    public int readNextLineAsInt() throws IOException {
+    public int readNextLineAsInt() throws SlimputException, IOException {
         String line = bufferedReader.readLine();
-        return Integer.parseInt(line);
+        if (line == "") {
+            throw new SlimputException();
+        } else {
+            return Integer.parseInt(line);
+        }
     }
 
 }
