@@ -4,7 +4,6 @@ import io.github.byxor.slimput.SlimputException;
 import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -24,6 +23,22 @@ public class IntegerScannerTest {
         whenReadingNextLineAsInt();
     }
 
+    @Test
+    public void shouldReturnZeroWhenReadingZeroAsInt() throws Exception {
+        givenAnIntegerScanner();
+        givenReadLineReturns("0");
+        whenReadingNextLineAsInt();
+        thenTheResultIs(0);
+    }
+
+    @Test
+    public void shouldReturnTwelveWhenReadingTwelveAsInt() throws Exception {
+        givenAnIntegerScanner();
+        givenReadLineReturns("12");
+        whenReadingNextLineAsInt();
+        thenTheResultIs(12);
+    }
+
     private void givenAnIntegerScanner() {
         bufferedReader = mock(BufferedReader.class);
         integerScanner = new IntegerScanner(bufferedReader);
@@ -37,7 +52,7 @@ public class IntegerScannerTest {
         result = integerScanner.readNextLineAsInt();
     }
 
-    private void thenResultIs(int expected) {
+    private void thenTheResultIs(int expected) {
         assertEquals(result, expected);
     }
 

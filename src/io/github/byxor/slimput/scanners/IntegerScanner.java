@@ -16,11 +16,10 @@ public class IntegerScanner {
 
     public int readNextLineAsInt() throws SlimputException, IOException {
         String line = bufferedReader.readLine();
-        if (line == "") {
+        if (line == "")
             throw new SlimputException();
-        } else {
+        else
             return Integer.parseInt(line);
-        }
     }
 
 }
