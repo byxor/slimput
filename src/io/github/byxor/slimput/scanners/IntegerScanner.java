@@ -16,10 +16,23 @@ public class IntegerScanner {
 
     public int readNextLineAsInt() throws SlimputException, IOException {
         String line = bufferedReader.readLine();
-        if (line == "")
+        if (line.equals(""))
             throw new SlimputException();
         else
             return Integer.parseInt(line);
     }
 
+    public int[] readNextLineAsIntArray() throws IOException {
+        String line = bufferedReader.readLine();
+        if (line.equals(""))
+            return new int[0];
+        else {
+            String[] words = line.split(" ");
+            int size = words.length;
+            int[] numbers = new int[size];
+            for (int i = 0; i < size; i++)
+                numbers[i] = Integer.parseInt(words[i]);
+            return numbers;
+        }
+    }
 }

@@ -14,7 +14,8 @@ public class IntegerScannerTest {
 
     private BufferedReader bufferedReader;
     private IntegerScanner integerScanner;
-    private int result;
+    private int integer;
+    private int[] integerArray;
 
     @Test(expectedExceptions = SlimputException.class)
     public void shouldThrowSlimputExceptionWhenReadingEmptyLineAsInt() throws Exception {
@@ -28,7 +29,7 @@ public class IntegerScannerTest {
         givenAnIntegerScanner();
         givenReadLineReturns("0");
         whenReadingNextLineAsInt();
-        thenTheResultIs(0);
+        thenTheIntegerIs(0);
     }
 
     @Test
@@ -36,7 +37,23 @@ public class IntegerScannerTest {
         givenAnIntegerScanner();
         givenReadLineReturns("12");
         whenReadingNextLineAsInt();
-        thenTheResultIs(12);
+        thenTheIntegerIs(12);
+    }
+
+    @Test
+    public void shouldReturnEmptyArrayWhenReadingEmptyLineAsIntArray() throws Exception {
+        givenAnIntegerScanner();
+        givenReadLineReturns("");
+        whenReadingNextLineAsIntArray();
+        thenTheIntegersAre();
+    }
+
+    @Test
+    public void shouldReturnArrayWhenReadingLineAsIntArray() throws Exception {
+        givenAnIntegerScanner();
+        givenReadLineReturns("2 3 1 40 20");
+        whenReadingNextLineAsIntArray();
+        thenTheIntegersAre(2, 3, 1, 40, 20);
     }
 
     private void givenAnIntegerScanner() {
@@ -49,11 +66,19 @@ public class IntegerScannerTest {
     }
 
     private void whenReadingNextLineAsInt() throws Exception {
-        result = integerScanner.readNextLineAsInt();
+        integer = integerScanner.readNextLineAsInt();
     }
 
-    private void thenTheResultIs(int expected) {
-        assertEquals(result, expected);
+    private void whenReadingNextLineAsIntArray() throws Exception {
+        integerArray = integerScanner.readNextLineAsIntArray();
+    }
+
+    private void thenTheIntegerIs(int expected) {
+        assertEquals(integer, expected);
+    }
+
+    private void thenTheIntegersAre(int ... expectedIntegers) {
+        assertEquals(integerArray, expectedIntegers);
     }
 
 }
