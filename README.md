@@ -33,4 +33,6 @@ public static void main(String[] args) {
 }
 ```
 
+The IntegerScanner class doesn't _just_ work with System.in, it can be used with _any_ BufferedReader you pass into it, making it ideal for reading input from files.
+
 You should check the unit tests for executable code examples.
