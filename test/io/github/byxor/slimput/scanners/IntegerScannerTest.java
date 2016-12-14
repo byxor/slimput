@@ -56,6 +56,15 @@ public class IntegerScannerTest {
         thenTheIntegersAre(2, 3, 1, 40, 20);
     }
 
+    @Test
+    public void shouldCreateIntegerScannerWithSystemIn() throws Exception {
+        givenAnIntegerScannerWithoutParameters();
+    }
+
+    private void givenAnIntegerScannerWithoutParameters() {
+        integerScanner = new IntegerScanner();
+    }
+
     private void givenAnIntegerScanner() {
         bufferedReader = mock(BufferedReader.class);
         integerScanner = new IntegerScanner(bufferedReader);
