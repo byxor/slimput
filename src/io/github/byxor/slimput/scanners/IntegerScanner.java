@@ -4,6 +4,7 @@ import io.github.byxor.slimput.SlimputException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 
 public class IntegerScanner {
@@ -12,6 +13,11 @@ public class IntegerScanner {
 
     public IntegerScanner(BufferedReader bufferedReader) {
         this.bufferedReader = bufferedReader;
+    }
+
+    public IntegerScanner() {
+        InputStreamReader streamReader = new InputStreamReader(System.in);
+        this.bufferedReader = new BufferedReader(streamReader);
     }
 
     public int readNextLineAsInt() throws SlimputException, IOException {
