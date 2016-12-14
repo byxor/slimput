@@ -1,19 +1,19 @@
 # slimput
 Java IO is slow. Let's fix that.
 
-## What is Slimput?
+#### What is Slimput?
 
 It's a simple library to make IO faster for Java.
 
-## What do you mean?
+#### What do you mean?
 
 The common way of reading standard input in Java is to use `java.util.Scanner`. The problem with this is how slow it is.
 
-## Does it matter?
+#### Does it matter?
 
 Yes. Competitive programming requires a _lot_ of reading from standard input. It sucks when your solution to a programming problem is optimal, yet exceeds the time limit because of slow IO.
 
-## How do I use it?
+#### How do I use it?
 
 If you need to submit the code, you can copy and paste the IntegerScanner class into your own file.
 
@@ -32,3 +32,5 @@ public static void main(String[] args) {
         System.out.println(x);
 }
 ```
+
+You should check the unit tests for executable code examples.
